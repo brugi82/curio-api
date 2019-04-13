@@ -21,12 +21,14 @@ steps:
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
     contents: '**/$(BuildConfiguration)/?(*.exe|*.dll)'
-    targetFolder: '$(Build.BinariesDirectory)'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+    overWrite: true
+    flattenFolders: true
   
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)' 
-    includeRootFolder: true 
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)' 
+    includeRootFolder: false 
     archiveType: 'zip' # Options: zip, 7z, tar, wim
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
     replaceExistingArchive: true 
