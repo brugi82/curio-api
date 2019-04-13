@@ -20,8 +20,16 @@ steps:
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb)'
-    targetFolder: $(Build.ArtifactStagingDirectory)
+    contents: '**/bin/$(BuildConfiguration)/?(*.exe|*.dll)'
+    targetFolder: '$(Build.BinariesDirectory)'
+  
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)' 
+    includeRootFolder: true 
+    archiveType: 'zip' # Options: zip, 7z, tar, wim
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
+    replaceExistingArchive: true 
 
 - task: PublishBuildArtifacts@1
   inputs:
