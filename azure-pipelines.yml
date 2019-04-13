@@ -20,7 +20,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**/bin/$(BuildConfiguration)/?(*.exe|*.dll)'
+    contents: '**/$(BuildConfiguration)/?(*.exe|*.dll)'
     targetFolder: '$(Build.BinariesDirectory)'
   
 - task: ArchiveFiles@2
