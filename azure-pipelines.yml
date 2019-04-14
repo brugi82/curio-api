@@ -21,6 +21,7 @@ steps:
   inputs:
     command: 'publish'
     zipAfterPublish: true
+    packagesToPack: '**/Curio.Api.csproj'
 
 - task: CopyFiles@2
   inputs:
