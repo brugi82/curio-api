@@ -12,6 +12,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  $(system.debug): true
 
 steps:
 #- script: dotnet build --configuration $(buildConfiguration)
